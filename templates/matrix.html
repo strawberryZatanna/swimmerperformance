@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Dictionary- {{ stroke }}</title>
+</head>
+<body>
+    {% if skills_dict %}
+    <h2>Skills for {{ stroke.stroke_name }}</h2>
+    <ul>
+        {% for meet, meet_dict in skills_dict.items %}
+            <li><strong>{{ meet.meet_title }}</strong> ({{ meet.meet_color }})</li>
+            <ul>
+                {% for skill, skill_dict in meet_dict.items %}
+                    <li><strong>{{ skill }}</strong>:
+                        <ul>
+                            {% for swimmer, level in skill_dict.items %}
+                                <li>{{ swimmer.first_name }} {{ swimmer.last_name }}: {{ level }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No skills data found.</p>
+{% endif %}
+</body>
+</html>
+
